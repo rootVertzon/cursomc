@@ -1,6 +1,6 @@
-package com.nelioalves.cursomc.domain;
+package com.nelioalves.cursomc.domain; /*Declara o pacote onde a classe está — só organiza os arquivos no projeto*/
 
-import java.io.Serializable;
+import java.io.Serializable; /*permitir que objetos possam ser convertidos para bytes (enviar pela rede*/
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Categoria implements Serializable {
@@ -20,6 +22,8 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 	
+	
+	@JsonManagedReference
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	

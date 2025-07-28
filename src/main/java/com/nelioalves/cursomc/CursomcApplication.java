@@ -12,10 +12,11 @@ import com.nelioalves.cursomc.domain.Produto;
 import com.nelioalves.cursomc.repositories.CategoriaRepository;
 import com.nelioalves.cursomc.repositories.ProdutoRepository;
 
-@SpringBootApplication
+@SpringBootApplication /*Essa é a classe principal do projeto*/
 public class CursomcApplication implements CommandLineRunner  {
 	
-	@Autowired
+	
+	@Autowired /*injeta o objeto pronto automaticamente*/
 	private CategoriaRepository categoriaRepository;
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -24,7 +25,7 @@ public class CursomcApplication implements CommandLineRunner  {
 		SpringApplication.run(CursomcApplication.class, args);
 	}
 
-	@Override
+	@Override /*indica que esse método substitui outro já existente*/
 	public void run(String... args) throws Exception {
 		
 		Categoria cat1 = new Categoria(null, "Informática");
