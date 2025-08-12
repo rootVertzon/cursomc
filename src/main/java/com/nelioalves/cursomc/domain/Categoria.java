@@ -1,6 +1,6 @@
 package com.nelioalves.cursomc.domain; /*Declara o pacote onde a classe está — só organiza os arquivos no projeto*/
 
-import java.io.Serializable; /*permitir que objetos possam ser convertidos para bytes (enviar pela rede*/
+import java.io.Serializable; 
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,21 +12,23 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
-public class Categoria implements Serializable {
+@Entity // Diz que essa classe é uma entidade JPA
+public class Categoria implements Serializable { /*permitir que objetos possam ser convertidos para bytes (enviar pela rede*/
 	private static final long serialVersionUID = 1L;
 	
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id // Define o campo como chave primária
+	@GeneratedValue(strategy=GenerationType.IDENTITY) // Geração automática do ID
 	private Integer id;
 	private String nome;
 	
-	
-	@JsonManagedReference
+	// Relacionamento muitos p muitos com Produto (mapeado pelo lado 'categorias' em Produto)
+	@JsonManagedReference //evitar loop infinito na hora de gerar JSON 
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	
+	
+	// Construtor com os atributos principais
 	public Categoria() {
 	}
 
@@ -36,6 +38,8 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
+	
+    // Getters e setters
 	public Integer getId() {
 		return id;
 	}
@@ -60,7 +64,7 @@ public class Categoria implements Serializable {
 		this.produtos = produtos;
 	}
 	
-	
+	// hashCode baseado apenas no ID
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,6 +73,7 @@ public class Categoria implements Serializable {
 		return result;
 	}
 
+	// equals baseado apenas no ID
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

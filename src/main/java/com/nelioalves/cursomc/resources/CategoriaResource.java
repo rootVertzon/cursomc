@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nelioalves.cursomc.domain.Categoria;
 import com.nelioalves.cursomc.services.CategoriaService;
 
-@RestController
-@RequestMapping(value="/categorias")
+@RestController // Define que essa classe é um controlador REST (vai responder requisições HTTP)
+@RequestMapping(value="/categorias") // Define o caminho base da URL para esse recurso: /categorias
 public class CategoriaResource {
 	
 	@Autowired
 	private CategoriaService service; 
 	
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Categoria obj = service.buscar(id);
-		return ResponseEntity.ok().body(obj);
+	@RequestMapping(value="/{id}", method=RequestMethod.GET) // Mapeia requisições GET com o caminho /categorias/{id}
+	public ResponseEntity<?> find(@PathVariable Integer id) {  // Retorna um ResponseEntity com a resposta HTTP (status + corpo)
+		Categoria obj = service.buscar(id); // Chama o serviço para buscar a categoria pelo ID
+		return ResponseEntity.ok().body(obj);// Retorna resposta com status 200 OK e o corpo contendo a categoria encontrada
 		
 	}
 }
