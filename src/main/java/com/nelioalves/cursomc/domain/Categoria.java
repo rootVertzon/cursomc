@@ -1,6 +1,6 @@
 package com.nelioalves.cursomc.domain; /*Declara o pacote onde a classe está — só organiza os arquivos no projeto*/
 
-import java.io.Serializable; 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity // Diz que essa classe é uma entidade JPA
 public class Categoria implements Serializable { /*permitir que objetos possam ser convertidos para bytes (enviar pela rede*/
@@ -23,7 +21,7 @@ public class Categoria implements Serializable { /*permitir que objetos possam s
 	private String nome;
 	
 	// Relacionamento muitos p muitos com Produto (mapeado pelo lado 'categorias' em Produto)
-	@JsonManagedReference //evitar loop infinito na hora de gerar JSON 
+	//JsonManagedReference //evitar loop infinito na hora de gerar JSON 
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	
