@@ -25,5 +25,9 @@ public class CategoriaService {
 		// TODO Auto-generated method stub
 		return find(id);
 	}
-
+	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null); //Novo obj inserido, tem que ter um ID nulo, se já tiver algo com o mesmo ID, o metodo save (linha abaixo), vai considerar um atualização, não uma inserção nova
+		return repo.save(obj);
+	}
 }
