@@ -15,7 +15,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Categoria find(Integer id) { // Método responsável por buscar uma Categoria pelo ID
+	public Categoria find(Integer id) { // Método responsável por find uma Categoria pelo ID
 		 Optional<Categoria> obj = repo.findById(id); // Tenta encontrar a categoria com o ID fornecido (retorna um Optional)
 		return obj.orElseThrow(() -> new ObjectNotFoundException( // Se encontrar, retorna o objeto. Se não, lança uma exceção personalizada
 		 "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName())); 
@@ -30,4 +30,10 @@ public class CategoriaService {
 		obj.setId(null); //Novo obj inserido, tem que ter um ID nulo, se já tiver algo com o mesmo ID, o metodo save (linha abaixo), vai considerar um atualização, não uma inserção nova
 		return repo.save(obj);
 	}
+	
+	public Categoria update(Categoria obj) {
+		find(obj.getId()); //Se o Id não existir, vai lançar uma exceção 
+		return repo.save(obj);
+	}
+	
 }

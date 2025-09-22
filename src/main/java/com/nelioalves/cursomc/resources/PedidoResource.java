@@ -22,8 +22,8 @@ public class PedidoResource {
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET) // Mapeia requisições GET com o caminho /categorias/{id}
-	public ResponseEntity<?> find(@PathVariable Integer id) {  // Retorna um ResponseEntity com a resposta HTTP (status + corpo)
-		Pedido obj = service.buscar(id); // Chama o serviço para buscar a categoria pelo ID
+	public ResponseEntity<Pedido> find(@PathVariable Integer id) {  // Retorna um ResponseEntity com a resposta HTTP (status + corpo)
+		Pedido obj = service.find(id); // Chama o serviço para buscar a categoria pelo ID
 		return ResponseEntity.ok().body(obj);// Retorna resposta com status 200 OK e o corpo contendo a categoria encontrada
 		
 	}

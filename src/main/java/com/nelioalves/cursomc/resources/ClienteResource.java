@@ -22,8 +22,8 @@ public class ClienteResource {
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET) // Mapeia requisições GET com o caminho /cliente/{id}
-	public ResponseEntity<?> find(@PathVariable Integer id) {  // Retorna um ResponseEntity com a resposta HTTP (status + corpo)
-		Cliente obj = service.buscar(id); // Chama o serviço para buscar um cliente pelo ID
+	public ResponseEntity<Cliente> find(@PathVariable Integer id) {  // Retorna um ResponseEntity com a resposta HTTP (status + corpo)
+		Cliente obj = service.find(id); // Chama o serviço para buscar um cliente pelo ID
 		return ResponseEntity.ok().body(obj);// Retorna resposta com status 200 OK e o corpo contendo o cliente encontrado
 		
 	}
