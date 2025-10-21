@@ -2,6 +2,10 @@ package com.nelioalves.cursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.nelioalves.cursomc.domain.Categoria;
 
 public class CategoriaDTO implements Serializable { /*permitir que objetos possam ser convertidos para bytes (enviar pela rede*/
@@ -9,6 +13,9 @@ public class CategoriaDTO implements Serializable { /*permitir que objetos possa
 	
 	
 	private Integer id;
+	
+	@NotEmpty(message="Preenchimento obrigatório")//Garante que o campo não esteja vazio
+	@Length(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")//Define o tamanho mínimo e máximo permitido para uma String
 	private String nome;
 	
 	public CategoriaDTO() {

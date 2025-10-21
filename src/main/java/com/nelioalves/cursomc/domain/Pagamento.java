@@ -14,12 +14,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.JOINED)//Indica que a herança vai ser mapeada com tabelas separadas, unidas por chaves estrangeiras
 public abstract class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private Integer id;
+	
 	private Integer estado; 
 	
 	@JsonIgnore
